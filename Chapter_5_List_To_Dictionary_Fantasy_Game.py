@@ -5,12 +5,14 @@ Data: 04/06/2023
 '''
 
 def addToInventory(inventory, addedItems):
+    '''Adiciona itens ao inventário que foi passado'''
     for item in addedItems:
         inventory.setdefault(item, 0) #valida se já existe. Em caso positivo mantém o valor, em caso negativo cria a chave e coloca o valor com 0
         inventory[item] += 1
     return inventory
 
 def displayInventory(inventory):
+    '''Mostra os itens que estão no inventario'''
     print("Inventory:")
     itemTotal = 0 #variável para contabilizar o total de itens
     for itemType, quantityItem in inventory.items():

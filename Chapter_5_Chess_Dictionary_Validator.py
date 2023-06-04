@@ -5,6 +5,9 @@ Data: 04/06/2023
 '''
 
 def isValidChessBoard(chessBoard):
+    '''Função que avalia se um tabuleiro de xadrez é válido.
+
+    Avalia se há pelo menos um rei de cada lado, se as peças realmente existem, se as casas existem e se a quantidade de peças é permitida'''
     #Função para avaliar se o tabuleiro de xadrez é valido
     minimum = ['bking', 'wking'] #variável com as peças mínimas no tabuleiro
     qntPieces = {} #variável auxiliar para saber quantas peças de cada existem no tabuleiro
