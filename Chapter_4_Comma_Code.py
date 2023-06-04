@@ -1,38 +1,54 @@
-#Programa para testar o uso de listas
+"""
+Programa para testar o uso de listas
+Autor: Douglas Silva
+Data: 04/06/2023
+"""
+
 while True:
     try:
+
+ #Declaração das variáveis
         print('Insira uma lista:')
         entrada = list(input())
-        lista = []
-        auxiliar = ''
-        if ('[' or '(' or ')' or ']' or ',') in entrada:
-            while ('[' or '(' or ')' or ']' or ',') in entrada:
+        lista = [] #Auxiliar para criar a lista a ser transformada em texto
+        auxiliar = '' #Auxiliar para pegar os elementos da lista inserida
+        checar = ['[', '(', ')', ']', ','] #Auxiliar com os símbolos para entender que é lista ou tupla
+        texto = '' #texto a ser exibido no final
+
+#Condicionais para ver se o que foi inserido é uma lista ou tupla
+        if any(value in checar for value in entrada):
+            while any(value in checar for value in entrada):
                 if '[' in entrada:
                     entrada.remove ('[')
-                if '(' in entrada:
+                elif '(' in entrada:
                     entrada.remove ('(')
-                if ']' in entrada:
-                    entrada.remove (']')
-                if ')' in entrada:
-                    entrada.remove (')')
-                if ',' in entrada:
+                elif ' ' in entrada:
+                    entrada.remove(' ')
+                elif ',' in entrada:
                     quebra = entrada.index(',')
                     for index, item in enumerate(entrada):
                         if index == (quebra):
                             del entrada[0:quebra]
                             entrada.remove(',')
+                            break
                         else:
                             auxiliar += item
                     lista.append(auxiliar)
                     auxiliar = ''
+                elif ']' in entrada:
+                    entrada.remove (']')
+                elif ')' in entrada:
+                    entrada.remove (')')
         for index, item in enumerate(entrada):
             auxiliar += item
         lista.append(auxiliar)
-        auxiliar = ''
-        texto=''
+
+        #Checa se a lista está vazia
         if lista == ['']:
             print('Valor inválido. Tente novamente.', end=' ')
             continue
+
+        #Adiciona cada elemento da lista na string e a exibe
         for index, item in enumerate(lista):
             if index == (len(lista)-1):
                 texto += 'and '
@@ -41,6 +57,8 @@ while True:
                 texto += item + ', '
         print(texto)
         break
+    
+    #Caso haja algum erro pede para o usuário inserir uma nova lista
     except:
         print('Valor inválido, tente novamente')
         continue
