@@ -12,43 +12,59 @@ while True:
         entrada = list(input())
         lista = [] #Auxiliar para criar a lista a ser transformada em texto
         auxiliar = '' #Auxiliar para pegar os elementos da lista inserida
-        checar = ['[', '(', ')', ']', ','] #Auxiliar com os símbolos para entender que é lista ou tupla
+        checar = ['[', '(', ')', ']', ',', ' '] #Auxiliar com os símbolos para entender que é lista ou tupla
         texto = '' #texto a ser exibido no final
+        listaAuxiliar = list() #Auxiliar para saber onde estão os espaços e as vírgulas
+        proxCaracEspecial = 0 #Auxiliar para determinar o próximo espaço ou vírgula
+        contador = 0 #Auxiliar para ajudar no cálculo do próximo espaço ou vírgula
 
-#Condicionais para ver se o que foi inserido é uma lista ou tupla
+#Condicionais para ver se o que foi inserido é uma lista ou tupla ou palavras individuais
         if any(value in checar for value in entrada):
-            while any(value in checar for value in entrada):
-                if '[' in entrada:
+            for indice, value in enumerate(entrada):
+                if indice == len(entrada) - 1:
+                    break
+                elif value == ',':
+                    listaAuxiliar.append(indice)
+                elif value == ' ':
+                    listaAuxiliar.append(indice)
+                elif '[' in entrada:
                     entrada.remove ('[')
                 elif '(' in entrada:
                     entrada.remove ('(')
-                elif ' ' in entrada:
-                    entrada.remove(' ')
-                elif ',' in entrada:
-                    quebra = entrada.index(',')
+            while any(value in checar for value in entrada):
+                if (',' in entrada) or (' ' in entrada):
+                    quebra = listaAuxiliar[0]
                     for index, item in enumerate(entrada):
                         if index == (quebra):
                             del entrada[0:quebra]
-                            entrada.remove(',')
+                            del entrada[0]
+                            proxCaracEspecial = proxCaracEspecial + listaAuxiliar[0]
+                            contador += 1
+                            if len(listaAuxiliar) > 1:
+                                listaAuxiliar[1] = listaAuxiliar[1] - proxCaracEspecial - contador
+                            del listaAuxiliar[0]
                             break
                         else:
                             auxiliar += item
-                    lista.append(auxiliar)
-                    auxiliar = ''
+                    if auxiliar != '':
+                        lista.append(auxiliar)
+                        auxiliar = ''
                 elif ']' in entrada:
                     entrada.remove (']')
                 elif ')' in entrada:
                     entrada.remove (')')
         for index, item in enumerate(entrada):
             auxiliar += item
-        lista.append(auxiliar)
+        if auxiliar != '':
+            lista.append(auxiliar)
 
         #Checa se a lista está vazia
-        if lista == ['']:
+        if lista == []:
             print('Valor inválido. Tente novamente.', end=' ')
             continue
 
         #Adiciona cada elemento da lista na string e a exibe
+        print(lista)
         for index, item in enumerate(lista):
             if index == (len(lista)-1):
                 texto += 'and '
