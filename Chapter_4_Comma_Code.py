@@ -12,7 +12,7 @@ while True:
         entrada = list(input())
         lista = [] #Auxiliar para criar a lista a ser transformada em texto
         auxiliar = '' #Auxiliar para pegar os elementos da lista inserida
-        checar = ['[', '(', ')', ']', ',', ' '] #Auxiliar com os símbolos para entender que é lista ou tupla
+        checar = ['[', '(', ')', ']', ',', ' ', '{', '}'] #Auxiliar com os símbolos para entender que é lista ou tupla
         texto = '' #texto a ser exibido no final
         listaAuxiliar = list() #Auxiliar para saber onde estão os espaços e as vírgulas
         proxCaracEspecial = 0 #Auxiliar para determinar o próximo espaço ou vírgula
@@ -21,9 +21,7 @@ while True:
 #Condicionais para ver se o que foi inserido é uma lista ou tupla ou palavras individuais
         if any(value in checar for value in entrada):
             for indice, value in enumerate(entrada):
-                if indice == len(entrada) - 1:
-                    break
-                elif value == ',':
+                if value == ',':
                     listaAuxiliar.append(indice)
                 elif value == ' ':
                     listaAuxiliar.append(indice)
@@ -31,6 +29,8 @@ while True:
                     entrada.remove ('[')
                 elif '(' in entrada:
                     entrada.remove ('(')
+                elif '{' in entrada:
+                    entrada.remove ('{')
             while any(value in checar for value in entrada):
                 if (',' in entrada) or (' ' in entrada):
                     quebra = listaAuxiliar[0]
@@ -53,6 +53,8 @@ while True:
                     entrada.remove (']')
                 elif ')' in entrada:
                     entrada.remove (')')
+                elif '}' in entrada:
+                    entrada.remove ('}')
         for index, item in enumerate(entrada):
             auxiliar += item
         if auxiliar != '':
@@ -64,7 +66,6 @@ while True:
             continue
 
         #Adiciona cada elemento da lista na string e a exibe
-        print(lista)
         for index, item in enumerate(lista):
             if index == (len(lista)-1):
                 texto += 'and '
