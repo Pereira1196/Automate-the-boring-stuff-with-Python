@@ -66,6 +66,7 @@ while True:
             continue
 
         #Adiciona cada elemento da lista na string e a exibe
+        print(lista)
         for index, item in enumerate(lista):
             if index == (len(lista)-1):
                 texto += 'and '
