@@ -14,9 +14,9 @@ grid = [['.', '.', '.', '.', '.', '.'],
         ['.', 'O', 'O', '.', '.', '.'],
         ['.', '.', '.', '.', '.', '.']]
 
-for index, item in enumerate(grid):
-    for index2, item2 in enumerate(item):
-        if index2 == len(item)-1:
-            print(item2)
+for indiceLinha, linha in enumerate(grid):
+    for indiceImagem, imagem in enumerate(linha):
+        if indiceImagem == len(linha)-1:
+            print(imagem)
         else:
-            print(item2, end='')
+            print(imagem, end='')

@@ -15,17 +15,17 @@ caminho = Path.cwd() / 'teste'
 enderecoArquivos = list(caminho.glob('spam*.txt'))
 arquivos = list()
 ultimoNum = 0
-for item in enderecoArquivos:
-    arquivo = os.path.basename(item)
-    arquivos.append(arquivo)
+for endereco in enderecoArquivos:
+    nomeArquivo = os.path.basename(endereco)
+    arquivos.append(nomeArquivo)
 
-for index, item in enumerate(arquivos):
-    if ((index < 9) and item != ('spam00' + str(index+1) + '.txt')):
-        newName = 'spam00' + str(index+1) + '.txt'
-        shutil.move(enderecoArquivos[index], Path(os.path.dirname(enderecoArquivos[index])) / newName)
-    elif ((index < 99) and item != ('spam0' + str(index+1) + '.txt')):
-        newName = 'spam0' + str(index+1) + '.txt'
-        shutil.move(enderecoArquivos[index], Path(os.path.dirname(enderecoArquivos[index])) / newName)
+for numArquivo, arquivo in enumerate(arquivos):
+    if ((numArquivo < 9) and arquivo != ('spam00' + str(numArquivo+1) + '.txt')):
+        newName = 'spam00' + str(numArquivo+1) + '.txt'
+        shutil.move(enderecoArquivos[numArquivo], Path(os.path.dirname(enderecoArquivos[numArquivo])) / newName)
+    elif ((numArquivo < 99) and arquivo != ('spam0' + str(numArquivo+1) + '.txt')):
+        newName = 'spam0' + str(numArquivo+1) + '.txt'
+        shutil.move(enderecoArquivos[numArquivo], Path(os.path.dirname(enderecoArquivos[numArquivo])) / newName)
     else:
-        newName = 'spam' + str(index+1) + '.txt'
-        shutil.move(enderecoArquivos[index], Path(os.path.dirname(enderecoArquivos[index])) / newName)
+        newName = 'spam' + str(numArquivo+1) + '.txt'
+        shutil.move(enderecoArquivos[numArquivo], Path(os.path.dirname(enderecoArquivos[numArquivo])) / newName)

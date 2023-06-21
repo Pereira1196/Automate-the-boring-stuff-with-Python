@@ -10,14 +10,13 @@ import os, re, shutil
 from pathlib import Path
 
 extensao = re.compile('.*\.py')
-caminho = Path('..')
 destino = Path('../..') / 'newDirectory'
-for folder, subfolder, file in os.walk(caminho):
+for folder, subfolder, file in os.walk(Path('..')):
     for item in file:
-        listaArquivos = extensao.findall(item)
-        if listaArquivos != []:
+        arquivos = extensao.findall(item)
+        if arquivos != []:
             if not (destino).exists():
                 os.mkdir(destino)
-            for arquivo in listaArquivos:
+            for arquivo in arquivos:
                 enderecoArquivo = Path(folder) / arquivo
                 shutil.copy(str(enderecoArquivo), str(destino))

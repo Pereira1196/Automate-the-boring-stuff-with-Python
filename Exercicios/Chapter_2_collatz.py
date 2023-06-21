@@ -1,12 +1,13 @@
 #Este programa foi feito para testar o aprendizado de funções, condicionais, laços de repetição e try except
+#Todas as variáveis de função se iniciarão com z
 
-def collatz(numero):
+def collatz(znumber):
     #Função para explorar a sequência collatz
     global number
-    if numero % 2 == 0:
-        number = numero//2
+    if znumber % 2 == 0:
+        number = znumber//2
     else:
-        number = 3 * numero + 1
+        number = 3 * znumber + 1
     print(number)
     return number
 

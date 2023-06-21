@@ -38,13 +38,13 @@ for complement in ['mayo', 'mustard', 'lettuce', 'tomato']:
     if wantComplement == 'yes':
         sandwhich.setdefault(complement, 1)
 qntySandwhiches = pyip.inputInt('How many sandwhiches do you want ? \n')
-for key, value in sandwhich.items():
-    sandwhich[key] = value * qntySandwhiches
-    itemPrice = prices.get(key)*sandwhich.get(key)
+for sandwhichItem, value in sandwhich.items():
+    sandwhich[sandwhichItem] = value * qntySandwhiches
+    itemPrice = prices.get(sandwhichItem)*sandwhich.get(sandwhichItem)
     price += itemPrice
 
 print(f'You ordered {qntySandwhiches} of the following sandwhich:')
-for key in sandwhich.keys():
-    print(key)
+for sandwhichItem in sandwhich.keys():
+    print(sandwhichItem)
 print(20*'-')
 print(f'The price of your order is {price}')

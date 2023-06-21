@@ -13,13 +13,13 @@ for experimentNumber in range(10000):
         listOfNumbers.append(random.randint(0,1))
     # Code that checks if there is a streak of 6 heads or tails in a row.
     streaks = 0
-    for index, item in enumerate(listOfNumbers):
+    for play, throwResult in enumerate(listOfNumbers):
         if streaks == 5:
             numberOfStreaks += 1
             streaks = 0
-        elif index == len(listOfNumbers) - 1:
+        elif play == len(listOfNumbers) - 1:
             break
-        elif item == listOfNumbers[index + 1]:
+        elif throwResult == listOfNumbers[play + 1]:
             streaks += 1
         else:
             streaks = 0
